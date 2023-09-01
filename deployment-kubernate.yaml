@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apidory-k
+  labels:
+    app: apidory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apidory
+  template:
+    metadata:
+      labels:
+        app: apidory
+    spec:
+      containers:
+      - name: apidory
+        image: dory-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
