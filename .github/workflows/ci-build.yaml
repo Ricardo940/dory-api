@@ -34,15 +34,15 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           environment:
-            DB_HOST: ${{ }}
-            DB_NAME: ${{ }}
-            DB_PASSWORD: ${{ }}
-            DB_USER: ${{ }}
-            DORY_WEB_APP_URL: ${{ }}
-            GOOGLE_PASSWORD_APP: ${{ }}
-            URL_LOGO: ${{ }}
-            OAUTH_CLIENT_ID_MOBILE: ${{ }}
-            OAUTH_CLIENT_ID_WEB: ${{ }}
+            DB_HOST: ${{ vars.DB_HOST }}
+            DB_NAME: ${{ vars.DB_NAME }}
+            DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+            DB_USER: ${{ secrets.DB_USER }}
+            DORY_WEB_APP_URL: ${{ vars.DORY_WEB_APP_URL }}
+            GOOGLE_PASSWORD_APP: ${{ secrets.GOOGLE_PASSWORD_APP }}
+            URL_LOGO: ${{ vars.URL_LOGO }}
+            OAUTH_CLIENT_ID_MOBILE: ${{ secrets.OAUTH_CLIENT_ID_MOBILE }}
+            OAUTH_CLIENT_ID_WEB: ${{ secrets.OAUTH_CLIENT_ID_WEB }}
           push: true
           tags: ${{ env.ECR_REGISTRY }}/${{ vars.AWS_REGISTRY_ALIAS }}/${{ vars.AWS_REPOSITORY }}:latest
 
