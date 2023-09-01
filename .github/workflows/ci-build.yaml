@@ -28,14 +28,6 @@ jobs:
       - name: "Build and push"
         env:
           ECR_REGISTRY: ${{ steps.login-ecr-publico.outputs.registry }}
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ env.ECR_REGISTRY }}/${{ vars.AWS_REGISTRY_ALIAS }}/${{ vars.AWS_REPOSITORY }}:latest
-        environment:
           DB_HOST: ${{ vars.DB_HOST }}
           DB_NAME: ${{ vars.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -45,3 +37,10 @@ jobs:
           URL_LOGO: ${{ vars.URL_LOGO }}
           OAUTH_CLIENT_ID_MOBILE: ${{ secrets.OAUTH_CLIENT_ID_MOBILE }}
           OAUTH_CLIENT_ID_WEB: ${{ secrets.OAUTH_CLIENT_ID_WEB }}
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ env.ECR_REGISTRY }}/${{ vars.AWS_REGISTRY_ALIAS }}/${{ vars.AWS_REPOSITORY }}:latest
